@@ -39,3 +39,25 @@ c1.show_balance()
 c1.credit(304)
 c1.show_balance()
 
+
+
+try:
+    n = int(input("Enter an integer: "))
+    print("Number entered", n)
+
+except ValueError:
+    print("Invalid input")
+
+
+try:
+    a = float(input("enter 1st number "))
+    b = float(input("Enter 2nd number"))
+
+    result = a/b
+    print(result)
+
+except ZeroDivisionError:
+    print("Division by zero is not allowed")
+except ValueError:
+    print(" enter numeric values")
+
