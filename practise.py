@@ -74,3 +74,38 @@ elif n % 2 == 0 and 5 < n < 21 :
     print("Weird")
 elif n % 2 == 0 and n > 21:
     print("Not Weird")
+
+
+
+import socket
+
+s = socket.socket()
+print("Socket created")
+
+s.bind(('localhost', 9999))
+
+s.listen(3)
+print("Waiting")
+
+while True:
+    c, addr = s.accept()
+    name = c.recv(1024).decode()
+    print("Client connected", addr)
+    
+    c.send(bytes("Welcome here", 'utf-8'))
+
+    c.close()
+
+
+
+import socket
+
+c = socket.socket()
+
+c.connect(('localhost', 9999))
+
+name = input("Enter Name ")
+c.send(bytes(name, 'utf-8'))
+
+
+print(c.recv(1024).decode())
