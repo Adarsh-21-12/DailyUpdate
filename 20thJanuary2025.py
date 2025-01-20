@@ -1,3 +1,21 @@
+#database connectivity
+
+import mysql.connector
+
+connection = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Adarsh123"   
+)
+
+mycursor = connection.cursor()
+
+mycursor.execute('SHOW DATABASES')
+for i in mycursor:
+    print(i)
+mycursor.close()
+connection.close()
+
 #pandas
 
 import pandas as pd
@@ -20,7 +38,6 @@ import pandas as pd
 #file downloaded from kaggle
 
 ds = pd.read_csv('/indian_food.csv') 
-
 
 ds.head(10)
 
