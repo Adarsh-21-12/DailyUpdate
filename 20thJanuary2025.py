@@ -79,4 +79,40 @@ ds.isnull().sum().sort_values(ascending=False) #total null value table sorted fr
 #filling the nullvalue data by calculating the mean
 ds['Sleep Hours'].fillna(ds['Sleep Hours'].mean())
 
+#unique values
+unique_data = ds['Occupation'].unique()
+print(unique_data)
+
+unique_data = ds['Occupation'].unique()
+number_of_unique_occupation = ds['Occupation'].nunique()
+
+print(number_of_unique_occupation, unique_data)
+
+value_counts = ds['Occupation'].value_counts()
+print(value_counts)
+
+#o/p
+#Occupation
+#Unemployed    2139
+#Doctor        2004
+#Teacher       1980
+#Other         1971
+#Student       1953
+#Engineer      1953
+#Name: count, dtype: int64
+
+gender_count = ds['Gender'].value_counts()
+age_duplicates = ds['Age'].mode()[0]
+print(age_duplicates, gender_count)
+
+#o/p
+#43 Gender
+#Female    5809
+#Male      5723
+#Other      468
+#Name: count, dtype: int64 
+#By this we can say that more female suffers from anxiety and mostly of age 43
+
+
+
 
