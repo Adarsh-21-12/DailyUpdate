@@ -56,6 +56,15 @@ print(ds.isnull().sum())
 null_value = ds[ds['region'].isnull()]
 print(null_value[['name','diet','course','state','region']])
 
+#dropping duplicate values
+drop_duplicate = ds.drop_duplicates(subset = ['ingredients'])
+print(drop_duplicate)
+
+#multiple methods used together. typo error in writing duplicated
+duplicatess = ds[ds.duplicated('ingredients')]
+print(duplicatess[['name','ingredients']].head(20))
+
+#different data set with nullvalues
 #sorting
 #axis 0 means row 1 means column
 sorted = ds.sort_values(by ='Severity of Anxiety Attack (1-10)', axis= 0, ascending=True)
