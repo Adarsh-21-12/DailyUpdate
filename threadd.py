@@ -30,3 +30,32 @@ t2.join()
 print("time taken ", time.time()-t)
 
 
+def square(numbers):
+    print("square")
+    for n in numbers : 
+        time.sleep(0.2)
+        print(n*n)
+
+
+def cube():
+    pass
+    
+
+arr = [23,45,23,23,12]
+
+t = time.time()
+
+t1 = threading.Thread(target=square, args=(arr,))
+t2 = threading.Thread(target=cube, args=(arr,))
+
+t1.start()
+t2.start()
+
+t1.join()
+t2.join()
+
+
+                      
+
+
+
