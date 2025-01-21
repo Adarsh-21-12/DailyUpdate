@@ -1,111 +1,19 @@
-class Student: 
-    def __init__ (self, Name, marks):
-        self.name = Name
-        self.marks = marks
-    
-    def get_avg(self):
-        sum = 0
-        for val in self.marks:
-            sum += val
-        print (self.name, sum/3)
+import pandas as pd
+
+data = {
+    'ID': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'Age': [25, 30, 35, 40, 45, 50, 150, 32, 28, 22],  # Outlier: 150
+    'Salary': [3000, 3500, 4000, 4500, 5000, 5500, 60000, 4200, 3800, 3400],  # Outlier: 60000
+    'Hours_Worked': [40, 42, 38, 45, 50, 39, 37, 200, 41, 43],  # Outlier: 200
+}
 
 
+df = pd.DataFrame(data)
 
-student1 = Student("Adarsh", [33, 45, 50])
-print(student1.name)
-student1.get_avg()
+df['z_score'] = (df['Age'] - df['Age'].mean()) / df['Age'].std()
 
+outliers = df[abs(df['z_score']) > 1 ]
 
-class Account:
-    def __init__(self, balance, account_no):
-        self.balance = balance
-        self.account_no = account_no 
-    
-    def debit(self, amount):
-        self.balance -= amount
-        print(amount, "Money debited")
+print(outliers)
 
-    def credit(self, amount):
-        self.balance += amount
-        print(amount, "Money Credited")
-
-    def show_balance (self):
-        print(self.balance)
-
-
-c1 = Account(200, 1)
-c1.debit(20)
-c1.show_balance()
-c1.credit(304)
-c1.show_balance()
-
-
-
-try:
-    n = int(input("Enter an integer: "))
-    print("Number entered", n)
-
-except ValueError:
-    print("Invalid input")
-
-
-try:
-    a = float(input("enter 1st number "))
-    b = float(input("Enter 2nd number"))
-
-    result = a/b
-    print(result)
-
-except ZeroDivisionError:
-    print("Division by zero is not allowed")
-except ValueError:
-    print(" enter numeric values")
-
-
-
-
-n = int(input().strip())
-
-if n % 2 != 0:
-    print("Weird")
-elif n % 2 == 0 and 1 < n < 6 :
-    print("Not Weird")
-elif n % 2 == 0 and 5 < n < 21 :
-    print("Weird")
-elif n % 2 == 0 and n > 21:
-    print("Not Weird")
-
-
-
-import socket
-
-s = socket.socket()
-print("Socket created")
-
-s.bind(('localhost', 9999))
-
-s.listen(3)
-print("Waiting")
-
-while True:
-    c, addr = s.accept()
-    name = c.recv(1024).decode()
-    print("Client connected", addr)
-    
-    c.send(bytes("Welcome here", 'utf-8'))
-
-    c.close()
-
-
-
-import socket
-
-c = socket.socket()
-
-c.connect(('localhost', 9999))
-
-name = input("Enter Name ")
-c.send(bytes(name, 'utf-8'))
-
-
-print(c.recv(1024).decode())
+ 
